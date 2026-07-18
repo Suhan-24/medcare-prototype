@@ -1,54 +1,60 @@
-# MedCare Healthcare Platform
+# MedCare
 
-This is a comprehensive healthcare platform featuring a React frontend and an Express/SQLite backend.
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![React](https://img.shields.io/badge/React-18-blue)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)
+![Express](https://img.shields.io/badge/Express-4.x-lightgrey)
+![SQLite](https://img.shields.io/badge/SQLite-3-blue)
+![Playwright](https://img.shields.io/badge/E2E-Playwright-green)
 
-## Architecture & Database
+A prototype full-stack healthcare application demonstrating end-to-end integration of a React frontend with a local Node.js/Express backend and SQLite database. 
 
-This project operates completely locally using an **SQLite** database (`server/medcare.db`). 
-There is no reliance on Vercel or MongoDB, meaning you can test brutally and safely locally. The data is entirely self-contained.
+## System Architecture
 
-### Setting up the Database
+- **Frontend**: React via Vite with TypeScript.
+- **Backend**: Express (Node.js) REST APIs.
+- **Database**: SQLite3 (`server/medcare.db`) for isolated, persistent local storage.
+- **Testing**: Playwright for end-to-end UI and API validation.
 
-1. Install dependencies:
+## Local Development Setup
+
+1. **Install Dependencies**
    ```bash
-   npm i
+   npm install
    ```
 
-2. Seed the SQLite database with initial demo data (doctors, medicines, test appointments):
+2. **Initialize Database**
+   Seeds the SQLite database with demo data (doctors, medicines, appointments).
    ```bash
    node server/seed.js
    ```
 
-### Running the App Locally
+3. **Start Servers Concurrently**
+   Starts both the Vite development server (`http://localhost:5173`) and the Express API server (`http://localhost:3001`).
+   ```bash
+   npm run dev:full
+   ```
 
-To start the backend API and frontend Vite server concurrently:
-```bash
-npm run dev:full
-```
-- The Vite frontend will typically be on `http://localhost:5173`
-- The Express API backend will be on `http://localhost:3001`
+## Testing
 
-### Running Automated API Tests
-
-You can verify that all SQLite queries and API endpoints are functioning properly by running the automated test script:
+**Backend API Validation**
+Executes CRUD operations against the SQLite database via the Express endpoints:
 ```bash
 node server/test_api.js
 ```
-This tests CRUD operations across doctors, medicines, patients, and appointments.
 
-### Running End-to-End Visual Tests
+**End-to-End Testing**
+Runs the Playwright suite simulating user workflows (Appointment booking, authentication, etc.).
+- Headless execution:
+  ```bash
+  npx playwright test
+  ```
+- Visual execution with slow-motion tracing:
+  ```bash
+  python3 visual_test.py
+  ```
 
-The platform features a fully comprehensive suite of Playwright E2E tests simulating real user flows. To run tests interactively and visually verify that all final states are displayed:
-```bash
-python3 visual_test.py
-```
-Or to run tests headlessly via Playwright directly:
-```bash
-npx playwright test
-```
+## Attributions
 
-### Attributions
-
-This Figma Make file includes components from [shadcn/ui](https://ui.shadcn.com/) used under [MIT license](https://github.com/shadcn-ui/ui/blob/main/LICENSE.md).
-
-This Figma Make file includes photos from [Unsplash](https://unsplash.com) used under [license](https://unsplash.com/license).
+- UI Components from [shadcn/ui](https://ui.shadcn.com/) (MIT License).
+- Stock photography from [Unsplash](https://unsplash.com) (Unsplash License).
