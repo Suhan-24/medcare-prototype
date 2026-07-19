@@ -2,6 +2,12 @@ import subprocess
 import sys
 
 def main():
+    # Force UTF-8 output encoding for terminals that default to CP1252 (like Windows CMD/PowerShell)
+    if hasattr(sys.stdout, 'reconfigure'):
+        sys.stdout.reconfigure(encoding='utf-8')
+    if hasattr(sys.stderr, 'reconfigure'):
+        sys.stderr.reconfigure(encoding='utf-8')
+
     print("🌱 Seeding the database...")
     try:
         # Run the seed script
@@ -17,7 +23,7 @@ def main():
     print("\n🚀 Starting the application (Frontend + Backend)...")
     try:
         # Start the local development server (concurrently runs Vite and Express)
-        subprocess.run(["npm", "run", "dev:full"], check=True)
+        subprocess.run(["npm", "run", "dev:full"], shell=True, check=True)
     except KeyboardInterrupt:
         print("\n👋 Server stopped by user. Goodbye!")
     except subprocess.CalledProcessError as e:
