@@ -50,45 +50,55 @@ graph TD
     DB_Driver <-->|Read/Write| DB
 ```
 
-## 💻 Local Development Setup
+## 🚀 Quick Start Guide
 
-1. **Install Dependencies**
+Follow these steps to set up and run the application locally.
+
+### 📋 Prerequisites
+
+Ensure the following environments are installed:
+1. **Node.js** (LTS version recommended) — [Download here](https://nodejs.org/)
+2. **Python** (Version 3.7 or newer) — [Download here](https://www.python.org/)
+
+---
+
+### 🛠️ Step 1: Install Dependencies
+
+1. Open a terminal or Command Prompt.
+2. Navigate to the project root directory:
+   ```bash
+   cd medcare-prototype
+   ```
+3. Install the required package dependencies:
    ```bash
    npm install
    ```
 
-2. **Initialize Database**
-   Seeds the SQLite database with demo data (doctors, medicines, appointments).
-   ```bash
-   node server/seed.js
-   ```
+---
 
-3. **Start Servers Concurrently**
-   Starts both the Vite development server (`http://localhost:5173`) and the Express API server (`http://localhost:3001`).
-   ```bash
-   npm run dev:full
-   ```
+### 🌱 Step 2: Start the Application
 
-## 🧪 Testing Validation
+Run the startup script to initialize/seed the database and start both the frontend and backend servers concurrently:
 
-The platform includes robust automated testing to ensure the frontend accurately reflects the backend database state.
-
-### Backend API Validation
-Executes raw CRUD operations against the SQLite database via the Express endpoints:
 ```bash
-node server/test_api.js
+python start.py
 ```
 
-### End-to-End Workflows
-Runs the Playwright suite simulating real user workflows (Appointment booking, authentication, etc.).
-- **Headless execution:**
-  ```bash
-  npx playwright test
-  ```
-- **Visual execution with slow-motion tracing:**
-  ```bash
-  python3 visual_test.py
-  ```
+* **Access the Application:** Once initialized, open a web browser and navigate to **`http://localhost:5173`**.
+* **Shutdown:** Press `Ctrl + C` in the terminal to terminate the active servers.
+
+---
+
+### 🧪 Step 3: Execute End-to-End Tests
+
+To run the automated validation suite with visual visual-motion tracking:
+
+```bash
+python visual_test.py
+```
+
+* **Behavior:** The script initiates Playwright and launches a headed browser to execute end-to-end user workflows (authentication, booking, checkout, and reminders) sequentially.
+* **Initialization Note:** On the initial execution, Playwright will automatically install the necessary browser binaries.
 
 ## 📜 Attributions
 
